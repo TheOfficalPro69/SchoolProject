@@ -31,7 +31,7 @@ Label2.grid(row=0, column=0, columnspan=3)
 def addcourse():
 
 
-    course = Toplevel();
+    course = Toplevel()
 
 
     course_entry = Entry(course, width=30, font = ("Helvetica Neue", 20))
@@ -39,6 +39,12 @@ def addcourse():
 
     btn_course = Button(course, padx=180,text= "Submit",font =("Helvetica Neue", 20),bg="sky blue")
     btn_course.place(x = 20, y= 40)
+
+    my_label2 = Label(course,width=40, text="Coming soon                                         ", font =("Helvetica Neue", 34))
+    my_label2.place(x=10, y= 200) 
+
+    course_entry.delete(0, END)
+
 
     course.title("Add A Course")
     course.geometry("500x600")
@@ -175,38 +181,107 @@ def calculator():
     nine = Button(calculator1, text='    9    ',padx=30, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(9))
     nine.grid(row=2, column=2)
 
-    nine = Button(calculator1, text='    4    ',padx=40, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(4))
-    nine.place(x=6, y=140)
+    four = Button(calculator1, text='    4    ',padx=40, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(4))
+    four.place(x=6, y=140)
+
+    five = Button(calculator1, text='    5    ',padx=32, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(5))
+    five.place(x=170, y=140)
+
+    six = Button(calculator1, text='    6    ',padx=28, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(6))
+    six.place(x=320, y=140)
+
+    three = Button(calculator1, text='    3    ',padx=39, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(3))
+    three.place(x=9, y=240)
+
+    two = Button(calculator1, text='    2    ',padx=32, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(2))
+    two.place(x=170, y=240)
+
+    one = Button(calculator1, text='    1    ',padx=28, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(1))
+    one.place(x=320, y=240)
+
+    zero = Button(calculator1, text='    0    ',padx=37, pady=25, borderwidth=3, font=Roman, command=lambda: calculations(1))
+    zero.place(x=9, y=340)
 
 
-    add_button = Button(calculator1, text='       +     ', padx=30, pady=25, borderwidth=3, font=Roman, command= lambda: add())
-    add_button.place(x=200, y=500)
+    add_button = Button(calculator1, text='       +     ', padx=17, pady=25, borderwidth=3, font=Roman, command= add)
+    add_button.place(x=320, y=340)         
 
-    equal_button = Button(calculator1, text='     =    ', padx=30, pady=25, borderwidth=3, font=Roman, command= lambda: equal())
-    equal_button.place(x=80, y=500)
+
+    multilpy_button = Button(calculator1, text='        x       ', padx=17, pady=25, borderwidth=3, font=Roman, command= multiply)
+    multilpy_button.place(x=9, y=440) 
+
+    divide_button = Button(calculator1, text='        /       ', padx=14, pady=25, borderwidth=3, font=Roman, command= divide)
+    divide_button.place(x=170, y=440) 
+
+    subtract_button = Button(calculator1, text='        -       ', padx=14, pady=25, borderwidth=3, font=Roman, command= subtract)
+    subtract_button.place(x=320, y=440) 
+
+
+    equal_button = Button(calculator1, text='     =    ', padx=28, pady=25, borderwidth=3, font=Roman, command= equal)
+    equal_button.place(x=170, y=340)
 
     calculator1.resizable(False, False)
 
-    calculator1.geometry('470x600')
+    clear_button = Button(calculator1, text='      Clear     ', padx=150, pady=25, borderwidth=3, font=Roman, command= clear)
+    clear_button.place(x=20, y=542)
+
+    calculator1.geometry('470x650')
+
+def clear():
+    calculation_entry.delete(0, END)
 
 def calculations(number):
+    global calculation_entry
     current = calculation_entry.get()
     calculation_entry.delete(0, END)
     calculation_entry.insert(0, str(current) + str(number))
 
 
-def equal():
-    global math, f_num
-    second_number = calculation_entry.get()
-    if math =='addition':
-        calculation_entry.insert(0, f_num + int(second_number))
-
 def add():
-    global math, f_num
+    global math, f_num, calculation_entry
     first_num = calculation_entry.get()
     f_num = int(first_num)
     calculation_entry.delete(0, END)
     math = 'addition'
+def divide():
+    global math, f_num, calculation_entry
+    first_num = calculation_entry.get()
+    f_num = int(first_num)
+    calculation_entry.delete(0, END)
+    math = 'divide'
+
+def subtract():
+    global math, f_num, calculation_entry
+    first_num = calculation_entry.get()
+    f_num = int(first_num)
+    calculation_entry.delete(0, END)
+    math = 'subtract'
+
+
+def multiply():
+    global math, f_num, calculation_entry
+    first_num = calculation_entry.get()
+    f_num = int(first_num)
+    calculation_entry.delete(0, END)
+    math = 'multiply'
+
+def equal():
+    global math, f_num, calculation_entry
+    second_number = calculation_entry.get()
+    calculation_entry.delete(0, END)
+
+    if math =='addition':
+        calculation_entry.insert(0, str(f_num + int(second_number)))
+    if math =='multiply':
+        calculation_entry.insert(0, str(f_num * int(second_number)))
+    if math =='divide':
+        calculation_entry.insert(0, str(f_num / int(second_number)))
+    if math =='subtract':
+        calculation_entry.insert(0, str(f_num - int(second_number)))
+
+
+
+
 
 
 
