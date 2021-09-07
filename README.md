@@ -1,1 +1,1 @@
-"# SchoolProject" 
+This is a project where you can add and remove students with many databases, view a map, and have access to a calculator. There is more still coming, this is just arranged in one file for convenience. 
